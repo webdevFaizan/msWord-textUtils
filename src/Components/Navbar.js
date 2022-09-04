@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import './navbar.css';
 
 export default function Navbar(props) {
+    // Class has to be replaced by class name.
   return (
     <div>
         <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
@@ -18,8 +19,14 @@ export default function Navbar(props) {
                     <Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
                 </li>
                 <li className="nav-item">
+                    <Link className="nav-link" to="/tutorial">Tutorial</Link>
+                </li>     
+                <li className="nav-item">
                     <Link className="nav-link" to="/about">About</Link>
                 </li>         
+                <li className="nav-item">
+                    <Link className="nav-link" to="/contact">Contact</Link>
+                </li>  
                 </ul>
                 {/* <form className="form-inline my-2 my-lg-0">
                 <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
@@ -30,6 +37,7 @@ export default function Navbar(props) {
                 <p> Enable {`${props.mode==='light'?'dark':'light'}`} Mode</p>
                     <label className="switch">                    
                     <input type="checkbox" onClick={props.onChange}/>  
+                    {/* Here the input tag does not have an ending tag, so we will have to add an ending tag. */}
                     <span className="slider round"></span>  
                     </label>
                 </div>
