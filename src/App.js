@@ -10,6 +10,13 @@ import Tutorial from './Components/Tutorial';
 import Blog from './Components/Blog';
 
 
+
+
+// This app.js is the main file of the whole app, this will contain all the components of all the website, so that this file looks clean, this is why Navbar component is retruned by this function but the main code base of Navbar is written in some other file.
+
+
+
+// The following is the router function of react that has to be installed separately using a package of 'react-router-dom' this is the main package that will enable us to have the main functionality of react, the single page application without page reload.
 import {
   BrowserRouter as Router,
   Routes,
@@ -59,6 +66,7 @@ function App() {
   return (  
     <>
       <Router>
+        {/* For now Navbar has a static title, but what if we want to change the title of Navbar as per the Routes we are in, so in that case we will have to pass the props, these props will collect the data of title from Routers and add that data to the Navbar.*/}
           <Navbar mode={mode}  onChange={toggleMode}/>  
           {/* Here the Navbar is a component that has been created in the components folder and this will consist of its own element in its own folder. And just by importing this component, we could easily reuse this component over and over again. */}
           <div className="alertContainer">
@@ -67,7 +75,12 @@ function App() {
             </div>
           </div>
           <div className="container my-3">
+
+
+            {/* VERY IMPORTANT -  We could easily see that all the above components are common to all the pages, and we have to change the following components using react routers. This is why we have added the Routers here, whichever Route or path we click, the code of that path will be rendered and the navbar and other components will remain the same. Even the alert component will stay the same since it is to be loaded in each and every page of the website.*/}
+            {/* VERY IMPORTANT - The router has all the files available for rendering, this means when ever we click on the link only the rendering will be done with the help of router, no new content will be downloaded. And this is why the API call for every component and every route is necessary, if all the contents had to be downloaded then the initial website would be hanged, but since those setup needs to be donwloaded that will be sufficient to call the API when ever the route is hit. This will keep the system lightweight. */}
           <Routes>
+            {/* When some one clicks on the link in the navbar then the code is redirected to here, here the next route is taken, that will ultimately render the required page */}
               <Route exact path="/" element={<TextForm color={colorOfEveryElement} showAlert={showAlert}/>}/>
               <Route exact path="/tutorial" element={<Tutorial color={colorOfEveryElement}/>}/>
               <Route exact path="/blog" element={<Blog color={colorOfEveryElement}/>}/>
