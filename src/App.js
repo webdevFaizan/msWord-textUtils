@@ -7,6 +7,7 @@ import TextForm from './Components/TextForm';
 import About from './Components/About';
 import Contact from './Components/Contact';
 import Tutorial from './Components/Tutorial';
+import Blog from './Components/Blog';
 
 
 import {
@@ -69,6 +70,7 @@ function App() {
           <Routes>
               <Route exact path="/" element={<TextForm color={colorOfEveryElement} showAlert={showAlert}/>}/>
               <Route exact path="/tutorial" element={<Tutorial color={colorOfEveryElement}/>}/>
+              <Route exact path="/blog" element={<Blog color={colorOfEveryElement}/>}/>
               <Route exact path="/about" element={<About color={colorOfEveryElement}/>}/>                                        
               <Route exact path="/contact" element={<Contact color={colorOfEveryElement}/>}/>
           </Routes>
