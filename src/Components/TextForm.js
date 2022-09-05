@@ -79,6 +79,8 @@ export default function TextForm(props) {
 
   const fireOnClickCopy = () =>{
     navigator.clipboard.writeText(text);
+    // I have not researched but we could easily disable copying of the text of the element using some similar commands, or if we paste anything in this field we could get notified about the status that the field has been copied. This could be helpful in those cases where you do not want anyone to copy anything, for example while during the examination.
+    
     alert("Copied");
   }
 
@@ -127,9 +129,10 @@ export default function TextForm(props) {
             <textarea className="form-control" value={text} onChange={handleOnChange} id="exampleFormControlTextarea1" style={{color : props.color==='black'?'black':'lightgreen', backgroundColor : props.color==='black'?'white':'black'}} rows="8"></textarea>
             {/* If inside this textarea, if we are not going to add this onChange method then we will not be able to add any change inside the text area. We will not be able to administer any change. */}
         </div>
-        <button  disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={fireOnClickUpper}>Convert to UPPERCASE</button>
+        <button  disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={()=>{fireOnClickUpper()}}>Convert to UPPERCASE</button>
+        {/* Note here, in the onClick method, onClick method only requires a function, it does not require a function call. And passing fireOnClickLower is exactly this, but if we have to call the function, like in a case when we have to fire the method with some parameter, then we will have to enclose it within an arrow or any other function. So let us think what this does, when the element here is clicked, the arrow function will be called upon and that arrow function will call the fireOnClickUpper method. Which will the exact same thing as the button to convert Lowercase is doing. */}
         <button  disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={fireOnClickLower}>Convert to LOWERCASE</button>
-        <button  disabled={text.length===0}  className="btn btn-primary mx-1 my-1" onClick={fireOnClickSentenceCase}>Sentence Case</button>        
+        <button  disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={fireOnClickSentenceCase}>Sentence Case</button>        
         <button  disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={fireOnClickTitleCase}>Title Case</button>
         <button  disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={fireOnClickCopy}>Copy Text</button>
         <button  disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={fireOnClickRemoveExtraSpaces}>Remove Extra Spaces</button>

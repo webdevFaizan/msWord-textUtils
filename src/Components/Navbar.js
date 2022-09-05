@@ -5,6 +5,18 @@ import './navbar.css';
 
 export default function Navbar(props) {
     // Class has to be replaced by class name.
+
+    const buttonSize = {width: '30px', height : '30px'};
+    const lightButton = (buttonSize)=>{
+        let border={border : '2px solid red'};
+        let obj= {...buttonSize, ...border};
+        return obj;
+    }
+    const darkButton = (buttonSize)=>{
+        let border={border : '2px solid white'};
+        let obj= {...buttonSize, ...border};
+        return obj;
+    }
   return (
     <div>
         <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
@@ -42,7 +54,30 @@ export default function Navbar(props) {
                 <button className="btn btn-primary btn-danger my-2 my-sm-0" type="submit">Search</button>
                 </form> */}
 
-                <div className={`pageColor text-${props.mode==='light'?'dark':'light'}`}>
+                {/* <div className="buttonList">
+                    {'Select a Theme ->'}
+                                 
+                </div> */}
+                
+                <div class="dropdown ">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Themes
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu5">
+                        <button type="button" className="btn btn-primary mx-2  my-2" onClick={()=>{props.onChange('primary')}} style={buttonSize}></button>
+                        {/* Explaination of onClick - Here I have added a functionality of enabling different themes as per requirement. onClick takes a function and not the function call, this is why we had to enclose it in an arrow function, and inside the arrow function we called the function with some parameter, and this is the only way to call a function with a parameter. Now this onChange will call the toggleMode(cls) with a specific parameter.*/}
+                        <button type="button" className="btn btn-secondary mx-2 my-2" onClick={()=>{props.onChange('secondary')}} style={buttonSize}></button>
+                        <button type="button" className="btn btn-success mx-2 my-2" onClick={()=>{props.onChange('success')}} style={buttonSize}></button>
+                        <button type="button" className="btn btn-danger mx-2 my-2" onClick={()=>{props.onChange('danger')}} style={buttonSize}></button>    
+                        <button type="button" className="btn btn-info mx-2 my-2" onClick={()=>{props.onChange('info')}} style={buttonSize}></button>
+                        <button type="button" className="btn btn-light mx-2 my-2" onClick={()=>{props.onChange('light')}} style={lightButton(buttonSize)} ></button>
+                        <button type="button" className="btn btn-dark mx-2 my-2" onClick={()=>{props.onChange('dark')}} style={darkButton(buttonSize)}></button>   
+                    </div>
+                </div>
+
+                <div className="empty mx-2" style={{width : '120px', height: '20px', backgroundColor: 'red', visibility: 'hidden'}}></div>
+
+                <div className={`pageColor text-${props.mode==='light'?'dark':'light'}`} style={{display : 'none'}}>
                 <p> Enable {`${props.mode==='light'?'dark':'light'}`} Mode</p>
                     <label className="switch">                    
                     <input type="checkbox" onClick={props.onChange}/>  
@@ -51,6 +86,8 @@ export default function Navbar(props) {
                     <span className="slider round"></span>  
                     </label>
                 </div>
+                
+
             </div>
         </nav>
     </div>

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Tutorial = (props) => {    
   return (
-    <div className={`tutorialPage`} >
+    <div className={`tutorialPage`} style={{color : `${props.color}`}} >
         <strong>You are on the tutorial Page</strong>
         <strong>Sample Text - </strong>
         <br />
