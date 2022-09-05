@@ -42,14 +42,7 @@ export default function TextForm(props) {
     props.showAlert("Converted to Sentence Case", "success");
   }
 
-  function numberOfWords(){
-    let arr = text.split(" ").filter((element)=>element.length!==0);
-    return arr.length;
-  }
-  function numberOfCharacters(){
-    return text.length;
-  }
-
+  
   const fireOnClickClear = ()=>{
     setText("");
     props.showAlert("Cleared", "success");
@@ -122,15 +115,44 @@ export default function TextForm(props) {
     }
   }
 
-  const buttonStyle = {
-    // padding : '10px',
-    border : '0px solid red',
-    borderRadius : '12px',
-    color : props.color==='black'?'black':'lightgreen',
-    backgroundColor : props.color==='black'?'white':'black',
-    boxShadow : '3px 5px',
+  // const buttonStyle = {
+  //   // padding : '10px',
+  //   border : '0px solid red',
+  //   borderRadius : '12px',
+  //   
+  //   // visiblity : `${if(text.length===0?'hidden':'none')}`
     
-  };
+  // };
+
+  const buttonStyle = ()=>{
+    const obj={};
+    obj.border='0px solid red';
+    obj.borderRadius='12px';
+    obj.color = props.color==='black'?'black':'lightgreen';
+    obj.backgroundColor = props.color==='black'?'white':'black';
+    obj.boxShadow = '3px 5px';
+    // obj.visiblity= text.length===0?'hidden':'visible';
+    // obj.display= text.length===0?'none':'';
+    obj.textDecoration = text.length===0?'line-through': '';
+    obj.opacity=text.length===0?0.2:1;
+    // obj.transitionDuration=text.length===0?10000:0.2;
+    obj.transition='padding 200';
+    // console.log(text.length);
+    return obj;
+  }
+
+  function numberOfWords(){
+    let arr = text.split(/\s+/).filter((element)=>element.length!==0);
+    return arr.length;
+  }
+  function numberOfCharacters(){
+    return text.length;
+  }
+
+  const numberOfSentences = ()=>{
+    let arr = text.split("\n").filter((element)=>element.length!==0);
+    return arr.length;
+  }
 
   return (
     <>
@@ -142,38 +164,41 @@ export default function TextForm(props) {
         </div>
         <div className='buttonContainer' style={{minHeight : '90px'}}>
           <div className="button1">
-            <button  disabled={text.length===0} className=" textFormButton mx-1 my-1" onClick={()=>{fireOnClickUpper()}} style ={buttonStyle} >Convert to UPPERCASE</button>
+            <button  disabled={text.length===0} className=" textFormButton mx-1 my-1" onClick={()=>{fireOnClickUpper()}} style ={buttonStyle()} >Convert to UPPERCASE</button>
             {/* Note here, in the onClick method, onClick method only requires a function, it does not require a function call. And passing fireOnClickLower is exactly this, but if we have to call the function, like in a case when we have to fire the method with some parameter, then we will have to enclose it within an arrow or any other function. So let us think what this does, when the element here is clicked, the arrow function will be called upon and that arrow function will call the fireOnClickUpper method. Which will the exact same thing as the button to convert Lowercase is doing. */}
           </div>
           <div className="button1">
-            <button  disabled={text.length===0} className=" textFormButton mx-3 my-1" onClick={fireOnClickLower} style ={buttonStyle} >Convert to LOWERCASE</button>
+            <button  disabled={text.length===0} className=" textFormButton mx-3 my-1" onClick={fireOnClickLower} style ={buttonStyle()} >Convert to LOWERCASE</button>
           </div>
           <div className="button1">
-            <button  disabled={text.length===0} className=" textFormButton mx-1 my-1" onClick={fireOnClickSentenceCase}style ={buttonStyle} >Sentence Case</button>        
+            <button  disabled={text.length===0} className=" textFormButton mx-1 my-1" onClick={fireOnClickSentenceCase}style ={buttonStyle()} >Sentence Case</button>        
           </div>
           <div className="button1">
-            <button  disabled={text.length===0} className=" textFormButton mx-1 my-1" onClick={fireOnClickTitleCase} style ={buttonStyle}  >Title Case</button>
+            <button  disabled={text.length===0} className=" textFormButton mx-1 my-1" onClick={fireOnClickTitleCase} style ={buttonStyle()}  >Title Case</button>
           </div>
           <div className="button1">
-            <button  disabled={text.length===0} className=" textFormButton mx-1 my-1" onClick={fireOnClickCopy} style ={buttonStyle}  >Copy Text</button>
+            <button  disabled={text.length===0} className=" textFormButton mx-1 my-1" onClick={fireOnClickCopy} style ={buttonStyle()}  >Copy Text</button>
           </div>
           <div className="button1">
-            <button  disabled={text.length===0} className=" textFormButton mx-1 my-1" onClick={fireOnClickRemoveExtraSpaces} style ={buttonStyle}  >Remove Extra Spaces</button>
+            <button  disabled={text.length===0} className=" textFormButton mx-1 my-1" onClick={fireOnClickRemoveExtraSpaces} style ={buttonStyle()}  >Remove Extra Spaces</button>
           </div>
           <div className="button1">
-            <button  disabled={text.length===0} className=" textFormButton mx-1 my-1" onClick={fireOnClickUndo} style ={buttonStyle}  >Undo</button>
+            <button  disabled={text.length===0} className=" textFormButton mx-1 my-1" onClick={fireOnClickUndo} style ={buttonStyle()}  >Undo</button>
           </div>
           <div className="button1">
-            <button  disabled={text.length===0} className=" textFormButton mx-1 my-1" onClick={fireOnClickOriginal} style ={buttonStyle}  >Original</button>
+            <button  disabled={text.length===0} className=" textFormButton mx-1 my-1" onClick={fireOnClickOriginal} style ={buttonStyle()}  >Original</button>
           </div>
           <div className="button1">
-            <button  disabled={text.length===0} className=" textFormButton mx-1 my-1" onClick={fireOnClickClear} style ={buttonStyle} >Clear</button>
+            <button  disabled={text.length===0} className=" textFormButton mx-1 my-1" onClick={fireOnClickClear} style ={buttonStyle()} >Clear</button>
           </div>
         </div>
     </div>
     <div className="container" style={{color : props.color}}>
       <h1 >Your Text Summary</h1>
-      <p>{numberOfWords()+ " Words "+ numberOfCharacters() +" Characters "}</p>
+      <p>{numberOfWords()+ " Words"}</p>
+      <p>{numberOfCharacters() +" Characters "}</p>
+      <p>{numberOfSentences()+ " Sentences"}</p>
+      <p>{0.48*numberOfWords()+ " seconds required for Reading"}</p>
     </div>
     <div className="container" style={{color : props.color}}>
       {/* This div tag is only possible because of the react hooks, since the changes on the text inside the textarea is being done, but since the hook is attatched to that variable, and this is why where ever we are using the same hook we are able to update the code without the page reload. This is the power of react hook. */}

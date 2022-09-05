@@ -62,11 +62,11 @@ export default function Navbar(props) {
                                  
                 </div> */}
                 
-                <div class="dropdown ">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div  className="dropdown ">
+                    <button  className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Themes
                     </button>
-                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu5">
+                    <div  className="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu5">
                         <button type="button" className="btn btn-light mx-2 my-2" onClick={()=>{props.onChange('light')}} style={lightButton(buttonSize)} ></button>
                         <button type="button" className="btn btn-dark mx-2 my-2" onClick={()=>{props.onChange('dark')}} style={darkButton(buttonSize)}></button>   
                         <button type="button" className="btn btn-primary mx-2  my-2" onClick={()=>{props.onChange('primary')}} style={buttonSize}></button>
