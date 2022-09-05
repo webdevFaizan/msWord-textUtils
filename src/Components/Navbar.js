@@ -64,14 +64,14 @@ export default function Navbar(props) {
                         Themes
                     </button>
                     <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu5">
+                        <button type="button" className="btn btn-light mx-2 my-2" onClick={()=>{props.onChange('light')}} style={lightButton(buttonSize)} ></button>
+                        <button type="button" className="btn btn-dark mx-2 my-2" onClick={()=>{props.onChange('dark')}} style={darkButton(buttonSize)}></button>   
                         <button type="button" className="btn btn-primary mx-2  my-2" onClick={()=>{props.onChange('primary')}} style={buttonSize}></button>
                         {/* Explaination of onClick - Here I have added a functionality of enabling different themes as per requirement. onClick takes a function and not the function call, this is why we had to enclose it in an arrow function, and inside the arrow function we called the function with some parameter, and this is the only way to call a function with a parameter. Now this onChange will call the toggleMode(cls) with a specific parameter.*/}
                         <button type="button" className="btn btn-secondary mx-2 my-2" onClick={()=>{props.onChange('secondary')}} style={buttonSize}></button>
                         <button type="button" className="btn btn-success mx-2 my-2" onClick={()=>{props.onChange('success')}} style={buttonSize}></button>
                         <button type="button" className="btn btn-danger mx-2 my-2" onClick={()=>{props.onChange('danger')}} style={buttonSize}></button>    
                         <button type="button" className="btn btn-info mx-2 my-2" onClick={()=>{props.onChange('info')}} style={buttonSize}></button>
-                        <button type="button" className="btn btn-light mx-2 my-2" onClick={()=>{props.onChange('light')}} style={lightButton(buttonSize)} ></button>
-                        <button type="button" className="btn btn-dark mx-2 my-2" onClick={()=>{props.onChange('dark')}} style={darkButton(buttonSize)}></button>   
                     </div>
                 </div>
 
