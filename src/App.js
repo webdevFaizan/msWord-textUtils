@@ -73,9 +73,9 @@ function App() {
       document.body.style.backgroundColor = '#494a4b';
       setColorOfEveryElement('white');
       showAlert("Dark mode has been enabled", "success");
-      setInterval(()=>{
-        document.title="Dark Mode Enabled";
-      },2000);
+      // setInterval(()=>{
+      //   document.title="Dark Mode Enabled";
+      // },2000);
       // setInterval(()=>{
       //   document.title="React App is the best";
       // },1000);
