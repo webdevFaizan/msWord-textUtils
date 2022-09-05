@@ -7,6 +7,7 @@ import About from './Components/About';
 import Contact from './Components/Contact';
 import Tutorial from './Components/Tutorial';
 import Blog from './Components/Blog';
+import SignUp from './Components/SignUp';
 
 
 // This app.js is the main file of the whole app, this will contain all the components of all the website, so that this file looks clean, this is why Navbar component is retruned by this function but the main code base of Navbar is written in some other file.
@@ -152,6 +153,7 @@ function App() {
               <Route exact path="/tutorial" element={<Tutorial color={colorOfEveryElement}/>}/>
               <Route exact path="/blog" element={<Blog color={colorOfEveryElement}/>}/>
               <Route exact path="/about" element={<About color={colorOfEveryElement}/>}/>                                        
+              <Route exact path="/sign-up" element={<SignUp color={colorOfEveryElement}/>}/>    
               <Route exact path="/contact" element={<Contact color={colorOfEveryElement}/>}/>
           </Routes>
           </div>
