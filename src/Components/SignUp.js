@@ -1,8 +1,8 @@
 import React from 'react'
 
-function SignUp() {
+function SignUp(props) {
   return (
-    <div>
+    <div style={{color : `${props.color}`}}>
         <form>
             <div className="form-group">
                 <label htmlFor="exampleInputEmail1">Email address</label>
