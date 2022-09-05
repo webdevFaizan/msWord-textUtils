@@ -33,7 +33,7 @@ function App() {
   // I have a question, there are two different state variables being created to take care of the same state of the variable? mode and colorOfEveryElement both are tracking the color of the elements on the page, then why is not only one of the above variables being used, why is two of them being used???? One thing I have noticed, mode is being sent to Navbar component, and the colorOfEveryElement is being sent to all the other routes. Why?? I think I have a one liner answer to this question, we are using bootstrap, and in bootstrap we are using these statehooks to define the class that should be applied and this is why we are sending these as separate variable easily.
   
 
-  const [alert, setAlert] = useState(null);
+  const [alert, setAlert] = useState(null);   //The first state of the alert variable is set to be equal to null. And the alert variable wil contain an object. And this is the state of the object that is being changed and is being monitered and manupulated over and over again.
 
 
   //This showAlert is a method to change the state using a global variable. But usually the global variable is not preferred, so we have written a different logic.
@@ -105,14 +105,13 @@ function App() {
     document.body.classList.remove('bg-danger');
     document.body.classList.remove('bg-info');
     document.body.classList.remove('bg-light');
-    // document.body.classList.remove('bg-dark');
-    
   }
 
   const toggleMode = (cls) =>{
-    removeBgClasses();
+    removeBgClasses();    //First we will remove all the possible bg-classes from the document.body, so that the new once could be added. And the total class list remains finite, if we do not remove the background classes then the new class list will keep on increasing and in the end the list will become very long.
     
-    document.body.classList.add('bg-'+cls);
+    document.body.classList.add('bg-'+cls); //Then add only one.
+    //Below are the different scenarios and color and background color combination that will make the website look even more beautiful.
     if(cls==='dark'){
       setMode('dark');
       setColorOfEveryElement('white');

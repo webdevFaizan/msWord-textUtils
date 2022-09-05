@@ -8,6 +8,7 @@ import React, {useState} from 'react'
 
 //So, in short react hooks allows us to use the features of class without the use of class. And react hook is one of the most important feature of updating the state of the variable live wihtout the refresh of the pages.
 
+import './textForm.css'
 
 export default function TextForm(props) {
   const [text, setText] = useState('');     //The string that we pass inside the useState('') is the default value of text, even if we do not pass anything to text this would be the default value.
@@ -121,24 +122,54 @@ export default function TextForm(props) {
     }
   }
 
+  const buttonStyle = {
+    // padding : '10px',
+    border : '0px solid red',
+    borderRadius : '12px',
+    color : props.color==='black'?'black':'lightgreen',
+    backgroundColor : props.color==='black'?'white':'black',
+    boxShadow : '3px 5px',
+    
+  };
+
   return (
     <>
     <div className='container'>
         <h1 style={{color : props.color}}>Enter the TEXT</h1>
         <div className="form-group" >            
-            <textarea className="form-control" value={text} onChange={handleOnChange} id="exampleFormControlTextarea1" style={{color : props.color==='black'?'black':'lightgreen', backgroundColor : props.color==='black'?'white':'black'}} rows="8"></textarea>
+            <textarea className="form-control" value={text} onChange={handleOnChange} id="exampleFormControlTextarea1" style={{color : props.color==='black'?'black':'lightgreen', backgroundColor : props.color==='black'?'white':'black', boxShadow : '3px 5px'}} placeholder="Please input the text to convert." rows="8"></textarea>
             {/* If inside this textarea, if we are not going to add this onChange method then we will not be able to add any change inside the text area. We will not be able to administer any change. */}
         </div>
-        <button  disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={()=>{fireOnClickUpper()}}>Convert to UPPERCASE</button>
-        {/* Note here, in the onClick method, onClick method only requires a function, it does not require a function call. And passing fireOnClickLower is exactly this, but if we have to call the function, like in a case when we have to fire the method with some parameter, then we will have to enclose it within an arrow or any other function. So let us think what this does, when the element here is clicked, the arrow function will be called upon and that arrow function will call the fireOnClickUpper method. Which will the exact same thing as the button to convert Lowercase is doing. */}
-        <button  disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={fireOnClickLower}>Convert to LOWERCASE</button>
-        <button  disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={fireOnClickSentenceCase}>Sentence Case</button>        
-        <button  disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={fireOnClickTitleCase}>Title Case</button>
-        <button  disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={fireOnClickCopy}>Copy Text</button>
-        <button  disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={fireOnClickRemoveExtraSpaces}>Remove Extra Spaces</button>
-        <button  disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={fireOnClickUndo}>Undo</button>
-        <button  disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={fireOnClickOriginal}>Original</button>
-        <button  disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={fireOnClickClear}>Clear</button>
+        <div className='buttonContainer' style={{minHeight : '90px'}}>
+          <div className="button1">
+            <button  disabled={text.length===0} className=" textFormButton mx-1 my-1" onClick={()=>{fireOnClickUpper()}} style ={buttonStyle} >Convert to UPPERCASE</button>
+            {/* Note here, in the onClick method, onClick method only requires a function, it does not require a function call. And passing fireOnClickLower is exactly this, but if we have to call the function, like in a case when we have to fire the method with some parameter, then we will have to enclose it within an arrow or any other function. So let us think what this does, when the element here is clicked, the arrow function will be called upon and that arrow function will call the fireOnClickUpper method. Which will the exact same thing as the button to convert Lowercase is doing. */}
+          </div>
+          <div className="button1">
+            <button  disabled={text.length===0} className=" textFormButton mx-3 my-1" onClick={fireOnClickLower} style ={buttonStyle} >Convert to LOWERCASE</button>
+          </div>
+          <div className="button1">
+            <button  disabled={text.length===0} className=" textFormButton mx-1 my-1" onClick={fireOnClickSentenceCase}style ={buttonStyle} >Sentence Case</button>        
+          </div>
+          <div className="button1">
+            <button  disabled={text.length===0} className=" textFormButton mx-1 my-1" onClick={fireOnClickTitleCase} style ={buttonStyle}  >Title Case</button>
+          </div>
+          <div className="button1">
+            <button  disabled={text.length===0} className=" textFormButton mx-1 my-1" onClick={fireOnClickCopy} style ={buttonStyle}  >Copy Text</button>
+          </div>
+          <div className="button1">
+            <button  disabled={text.length===0} className=" textFormButton mx-1 my-1" onClick={fireOnClickRemoveExtraSpaces} style ={buttonStyle}  >Remove Extra Spaces</button>
+          </div>
+          <div className="button1">
+            <button  disabled={text.length===0} className=" textFormButton mx-1 my-1" onClick={fireOnClickUndo} style ={buttonStyle}  >Undo</button>
+          </div>
+          <div className="button1">
+            <button  disabled={text.length===0} className=" textFormButton mx-1 my-1" onClick={fireOnClickOriginal} style ={buttonStyle}  >Original</button>
+          </div>
+          <div className="button1">
+            <button  disabled={text.length===0} className=" textFormButton mx-1 my-1" onClick={fireOnClickClear} style ={buttonStyle} >Clear</button>
+          </div>
+        </div>
     </div>
     <div className="container" style={{color : props.color}}>
       <h1 >Your Text Summary</h1>

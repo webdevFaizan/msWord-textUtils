@@ -1,0 +1,29 @@
+.textFormButton{
+    /* color : violet; */
+    /* border: '2px solid red'; */
+    padding: 5px;
+    transition-duration: 0.2s;
+}
+
+.textFormButton:hover{
+    /* font-size: large; */
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* .button{
+    padding: '10px';
+    border : '5px solid red';
+    transition-duration: 0;
+}
+
+.button:hover{
+    padding: '0px';
+} */
+
+
+.buttonContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
