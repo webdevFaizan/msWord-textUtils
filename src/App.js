@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import './App.css';
 import Alert from './Components/Alert';
@@ -8,8 +7,6 @@ import About from './Components/About';
 import Contact from './Components/Contact';
 import Tutorial from './Components/Tutorial';
 import Blog from './Components/Blog';
-
-
 
 
 // This app.js is the main file of the whole app, this will contain all the components of all the website, so that this file looks clean, this is why Navbar component is retruned by this function but the main code base of Navbar is written in some other file.
@@ -23,19 +20,49 @@ import {
   Route
 } from "react-router-dom";
 
+// var id=null;    //This is one usecase of global variable that is very helpful in this case, since we are storing the id of the previous setTimeout method we will be able to clear it before we set the next setTimeout method. But in the another more advanced defination of showAlert method we have removed this use of the global variable and passed the id of the clearTimeout as a state variable in the alert object.
 
 function App() {
   const [mode, setMode] = useState('light');
-  const [colorOfEveryElement, setColorOfEveryElement] = useState('black');
+  const [colorOfEveryElement, setColorOfEveryElement] = useState('black');    //We are enabling the state hook for changing the color of the whole website, this is done since all of the website's color is being considered as a state of the webiste. And in order to change the state of the website on some event change we need to hook it to some variable.
+  
+  // I have a question, there are two different state variables being created to take care of the same state of the variable? mode and colorOfEveryElement both are tracking the color of the elements on the page, then why is not only one of the above variables being used, why is two of them being used???? One thing I have noticed, mode is being sent to Navbar component, and the colorOfEveryElement is being sent to all the other routes. Why?? I think I have a one liner answer to this question, we are using bootstrap, and in bootstrap we are using these statehooks to define the class that should be applied and this is why we are sending these as separate variable easily.
+  
+
   const [alert, setAlert] = useState(null);
+
+
+  //This showAlert is a method to change the state using a global variable. But usually the global variable is not preferred, so we have written a different logic.
+
+  // const showAlert = (message, type) => {    
+  //   setAlert({
+  //     msg : message,
+  //     type : type
+  //   });
+  //   // console.log(id);
+  //   if(id){
+  //     // This condition will first clear the interval of the previous id so that the previous message is interrupted and the next alert message is shown with a new gap of 2000 milliseconds.
+  //     clearTimeout(id);
+  //     id=null;
+  //   }
+  //   id=setTimeout(() => {
+  //     setAlert(null);
+  //   }, 2000);
+  // }
+
   const showAlert = (message, type) => {    
+    if(alert && alert.id)   //This condition is to check the avaialbility of the alert object first time, for the first time the alert object is 'null' so alert.id cannot be and should not be accessed. 
+    clearInterval(alert.id);    //In this we are simply checking that if the id of the previous setTimeout is present, then first clear it. This will help us in the creation of a free event loop and 2 second gap of each message display will be properly done, without this clearing of the timeout, the new message will be cleared which we clearly do not want.
+
+    var id=setTimeout(() => {
+      setAlert(null);
+    }, 2000);
+    
     setAlert({
       msg : message,
-      type : type
+      type : type,
+      id: id      //We are getting the first 2 object parameter from the function being called, and the 3rd parameter from this 'id', I had to do this, since there no other way to track the state of the alert object, since we had to memorize the id of the last timout function. If it is passed in the state variable itself it will be remembered, coz this function is not returning anything, neither there is any variable to collect the return value. So the only other option was to take a global variable into account, which should not be preferred.
     });
-    setTimeout(() => {
-      setAlert(null);
-    }, 2000);    
   }
 
 
@@ -49,9 +76,9 @@ function App() {
       setInterval(()=>{
         document.title="Dark Mode Enabled";
       },2000);
-      setInterval(()=>{
-        document.title="React App is the best";
-      },1000);
+      // setInterval(()=>{
+      //   document.title="React App is the best";
+      // },1000);
     }
 
     else if(mode==='dark'){
@@ -67,7 +94,7 @@ function App() {
     <>
       <Router>
         {/* For now Navbar has a static title, but what if we want to change the title of Navbar as per the Routes we are in, so in that case we will have to pass the props, these props will collect the data of title from Routers and add that data to the Navbar.*/}
-          <Navbar mode={mode}  onChange={toggleMode}/>  
+          <Navbar mode={mode}  onChange={toggleMode}/>    {/* Notice here that the mode of the website is attatched to the state hook, and not to the props, since props are read only, this simply means, when the togglemode function is altered this will change the mode of the website, as the color of website is being considered as a state variable now. */}          
           {/* Here the Navbar is a component that has been created in the components folder and this will consist of its own element in its own folder. And just by importing this component, we could easily reuse this component over and over again. */}
           <div className="alertContainer">
             <div className="alertBox">
@@ -75,8 +102,6 @@ function App() {
             </div>
           </div>
           <div className="container my-3">
-
-
             {/* VERY IMPORTANT -  We could easily see that all the above components are common to all the pages, and we have to change the following components using react routers. This is why we have added the Routers here, whichever Route or path we click, the code of that path will be rendered and the navbar and other components will remain the same. Even the alert component will stay the same since it is to be loaded in each and every page of the website.*/}
             {/* VERY IMPORTANT - The router has all the files available for rendering, this means when ever we click on the link only the rendering will be done with the help of router, no new content will be downloaded. And this is why the API call for every component and every route is necessary, if all the contents had to be downloaded then the initial website would be hanged, but since those setup needs to be donwloaded that will be sufficient to call the API when ever the route is hit. This will keep the system lightweight. */}
           <Routes>

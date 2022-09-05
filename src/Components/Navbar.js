@@ -46,6 +46,7 @@ export default function Navbar(props) {
                 <p> Enable {`${props.mode==='light'?'dark':'light'}`} Mode</p>
                     <label className="switch">                    
                     <input type="checkbox" onClick={props.onChange}/>  
+                    {/* IMPORTANT : We are changing the state variable of color with the help of function that we call into this Navbar component, and the toggle mode could be separate component in the app.js having a position sticky like other elements, but we decided to keep it as a component of the Navbar and this is why we needed to have a funciton call to change the state of the variable, note since this has been received in props, we could not have changed the value of the porps directly, this is why  we had to send it as a function, function is not going to be changed, but once the function is called, the state variable inside that function could be changed.*/}
                     {/* Here the input tag does not have an ending tag, so we will have to add an ending tag. */}
                     <span className="slider round"></span>  
                     </label>
