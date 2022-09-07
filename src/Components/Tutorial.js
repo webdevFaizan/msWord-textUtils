@@ -25,12 +25,12 @@ const Tutorial = (props) => {
           <br />
           <br />
           Sample Input -
-          <strong>This is a MS Word Text Utility Tutorial</strong>
+          <strong>This is a Word Counter Text Utility Tutorial</strong>
           <br />
           Converting it to the full Uppercase -
           <br />
           Sample output - 
-          <strong>THIS IS A MS WORD TEXT UTILITY TUTORIAL</strong>
+          <strong>THIS IS A Word  TEXT UTILITY TUTORIAL</strong>
           <br />
           <br />
           <br />

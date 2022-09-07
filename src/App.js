@@ -27,8 +27,8 @@ import {
 // var id=null;    //This is one usecase of global variable that is very helpful in this case, since we are storing the id of the previous setTimeout method we will be able to clear it before we set the next setTimeout method. But in the another more advanced defination of showAlert method we have removed this use of the global variable and passed the id of the clearTimeout as a state variable in the alert object.
 
 function App() {
-  const [mode, setMode] = useState('light');
-  const [colorOfEveryElement, setColorOfEveryElement] = useState('black');    //We are enabling the state hook for changing the color of the whole website, this is done since all of the website's color is being considered as a state of the webiste. And in order to change the state of the website on some event change we need to hook it to some variable.
+  const [mode, setMode] = useState('dark');
+  const [colorOfEveryElement, setColorOfEveryElement] = useState('white');    //We are enabling the state hook for changing the color of the whole website, this is done since all of the website's color is being considered as a state of the webiste. And in order to change the state of the website on some event change we need to hook it to some variable.
   
   // I have a question, there are two different state variables being created to take care of the same state of the variable? mode and colorOfEveryElement both are tracking the color of the elements on the page, then why is not only one of the above variables being used, why is two of them being used???? One thing I have noticed, mode is being sent to Navbar component, and the colorOfEveryElement is being sent to all the other routes. Why?? I think I have a one liner answer to this question, we are using bootstrap, and in bootstrap we are using these statehooks to define the class that should be applied and this is why we are sending these as separate variable easily.
   
